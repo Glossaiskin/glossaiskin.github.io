@@ -53,6 +53,9 @@
 
 <div class="card">
   <h2>Today's celeb</h2>
+  <div class="row"><button id="nextc">Next celeb</button><button class="ghost" id="nexti">Next influencer</button></div>
+  <div class="flex" style="margin-top:6px"><span class="tip" id="qstat"></span><button class="small ghost" id="undo">Undo</button></div>
+  <label>Or type a name</label>
   <input id="name" placeholder="Sabrina Carpenter">
   <label class="pick" id="pk"><img id="pkimg" alt=""><span id="pktxt">Pick 1 to 4 photos of her (one is fine, slides auto zoom)</span><input type="file" accept="image/*" multiple id="photo"></label>
   <label>Crop position</label>
@@ -314,6 +317,8 @@ function caption(){
 async function files(){return Promise.all(canvases.map((c,i)=>new Promise(r=>c.toBlob(b=>r(new File([b],`gloss-${i+1}.jpg`,{type:'image/jpeg'})),'image/jpeg',.92))));}
 $('#save').onclick=async()=>{
   $('#st').textContent='preparing...';
+  const nm=$('#name').value.trim();const lg=$('#lang').value;
+  if(nm&&!(doneList()[lg]||[]).some(x=>x.n.toLowerCase()===nm.toLowerCase()&&Date.now()-x.t<86400000)){markDone(nm);queueStatus();}
   const fs=await files();
   if(navigator.canShare&&navigator.canShare({files:fs})){
     try{await navigator.share({files:fs});$('#st').textContent='done. check Photos';}
@@ -355,6 +360,31 @@ adj.addEventListener('pointerup',endPt);adj.addEventListener('pointercancel',end
 adj.addEventListener('wheel',e=>{e.preventDefault();const ph=photos[adjPhoto];ph.zoom=Math.min(3,Math.max(1,(ph.zoom||1)*(e.deltaY<0?1.05:0.95)));$('#adjzoom').value=Math.round(ph.zoom*100);drawAdj();},{passive:false});
 $('#adjzoom').oninput=e=>{photos[adjPhoto].zoom=+e.target.value/100;drawAdj();};
 $('#adjdone').onclick=()=>{$('#modal').classList.remove('on');render();};
+
+
+/* ---------- daily queue ---------- */
+const QUEUE={"en": {"celebs": ["Hailey Bieber", "Sydney Sweeney", "Jennifer Aniston", "Kylie Jenner", "Zendaya", "Jisoo", "Margot Robbie", "Sabrina Carpenter", "Jennifer Lopez", "Bella Hadid", "Selena Gomez", "Jennie", "Anya Taylor-Joy", "Addison Rae", "Kim Kardashian", "Olivia Rodrigo", "Cate Blanchett", "Kendall Jenner", "Florence Pugh", "Rosé", "Millie Bobby Brown", "Halle Berry", "Alix Earle", "Jenna Ortega", "Lupita Nyong'o", "Tate McRae", "Sofia Richie", "Salma Hayek", "Gigi Hadid", "Emma Chamberlain", "Nicole Kidman", "Ice Spice", "Ana de Armas", "Lisa", "Charli D'Amelio", "Julia Roberts", "Doja Cat", "Hailee Steinfeld", "Priyanka Chopra", "Sadie Sink", "Sandra Bullock", "Dua Lipa", "Taylor Swift", "Lily Collins", "Cindy Crawford", "Megan Thee Stallion", "Dakota Johnson", "IU", "Ayo Edebiri", "Jennifer Garner", "Emily Ratajkowski", "Simone Ashley", "Gwyneth Paltrow", "Livvy Dunne", "Zoë Kravitz", "Rihanna", "Billie Eilish", "Elle Fanning", "Naomi Campbell", "Coco Gauff", "Emma Watson", "Han So-hee", "Chappell Roan", "Reese Witherspoon", "Natalie Portman", "Kaia Gerber", "Deepika Padukone", "Hunter Schafer", "Michelle Yeoh", "Beyoncé", "Gracie Abrams", "Anne Hathaway", "Heidi Klum", "Ilona Maher", "Halle Bailey", "Alia Bhatt", "Maya Hawke", "Eva Longoria", "Simone Biles", "Karina", "Kate Hudson", "Barbie Ferreira", "Viola Davis", "Lady Gaga"], "inf": ["Alix Earle", "Mikayla Nogueira", "Monet McMichael", "Emma Chamberlain", "Charli D'Amelio", "Dixie D'Amelio", "Addison Rae", "Brooke Monk", "Xandra Pohl", "Katie Fang", "Devon Lee Carlson", "Matilda Djerf", "Sofia Richie Grainge", "Alex Cooper", "Madeline Argy", "Tara Yummy", "Kylie Cantrall", "Livvy Dunne", "Camila Coelho", "Negin Mirsalehi", "Leonie Hanne", "Chiara Ferragni", "Bella Poarch", "Tinx"]}, "es": {"celebs": ["Rosalía", "Ester Expósito", "Salma Hayek", "Aitana", "Karol G", "Ana de Armas", "Georgina Rodríguez", "Danna Paola", "Penélope Cruz", "Úrsula Corberó", "Shakira", "Lola Índigo", "Belinda", "Dulceida", "Eiza González", "Tini Stoessel", "Elsa Pataky", "Ana Mena", "Camila Cabello", "Blanca Suárez", "Anitta", "María Pedraza", "Jenna Ortega", "Cristina Pedroche", "Lali Espósito", "Milena Smit", "Sofía Vergara", "Emilia Mernes", "Becky G", "Paula Echevarría", "Ariana Grande", "Nicki Nicole", "Eva Longoria", "Kenia Os", "Yalitza Aparicio", "Bruna Marquezine", "Sara Carbonero", "María Becerra", "Rachel Zegler", "Carmen Villalobos", "Ángela Aguilar", "Dua Lipa", "Isabela Merced", "Belén Cuesta", "Monica Bellucci", "Xochitl Gomez", "Hailey Bieber", "Jennifer Lopez", "Kylie Jenner", "Selena Gomez", "Zendaya", "Sydney Sweeney", "Bella Hadid", "Sabrina Carpenter", "Kim Kardashian", "Margot Robbie"], "inf": ["Dulceida", "Laura Escanes", "María Pombo", "Marta Díaz", "Lola Lolita", "Marina Rivers", "Violeta Mangriñán", "Paula Gonu", "Rocío Osorno", "Twin Melody", "Kimberly Loaiza", "Domelipa", "Yeri Mua", "Kenia Os", "Yuya", "Lele Pons", "Karen Polinesia", "Priscila Escoto", "Luisa Fernanda W", "Aida Victoria Merlano", "Andrea Valdiri", "Ignacia Antonia", "Sofía Gonet", "Nicole García Colomer"]}};
+function queueFor(){const lg=$('#lang').value;return QUEUE[lg]||QUEUE.en;}
+function doneList(){return JSON.parse(store.get('gloss-done')||'{}');}
+function markDone(name){const d=doneList();const lg=$('#lang').value;(d[lg]=d[lg]||[]).push({n:name,t:Date.now()});store.set('gloss-done',JSON.stringify(d));}
+function nextName(pool){
+  const lg=$('#lang').value;const done=(doneList()[lg]||[]).map(x=>x.n);
+  const list=queueFor()[pool];const left=list.filter(n=>!done.includes(n));
+  if(!left.length){const d=doneList();d[lg]=(d[lg]||[]).filter(x=>!list.includes(x.n));store.set('gloss-done',JSON.stringify(d));return list[0];}
+  return left[0];
+}
+function queueStatus(){
+  const lg=$('#lang').value;const done=(doneList()[lg]||[]).map(x=>x.n);const q=queueFor();
+  const c=q.celebs.filter(n=>!done.includes(n)).length,i=q.inf.filter(n=>!done.includes(n)).length;
+  const today=(doneList()[lg]||[]).filter(x=>Date.now()-x.t<86400000).length;
+  $('#qstat').textContent=`${c} celebs and ${i} influencers left on this list. ${today} posted in the last 24h.`;
+}
+function useNext(pool){const n=nextName(pool);$('#name').value=n;markDone(n);reroll();queueStatus();$('#photo').click();}
+$('#nextc').onclick=()=>useNext('celebs');
+$('#nexti').onclick=()=>useNext('inf');
+$('#undo').onclick=()=>{const d=doneList();const lg=$('#lang').value;if(d[lg]&&d[lg].length){d[lg].pop();store.set('gloss-done',JSON.stringify(d));}queueStatus();};
+$('#lang').addEventListener('change',queueStatus);
+queueStatus();
 
 /* ---------- reroll everything ---------- */
 function reroll(){
