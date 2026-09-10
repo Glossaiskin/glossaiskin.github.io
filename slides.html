@@ -465,7 +465,7 @@ function loadList(i){
   listIdx=Math.max(0,Math.min(library.length-1,i));store.set(kIdx(),String(listIdx));
   const e=library[listIdx];tips={title:e.title,items:e.items.slice(0,12),caption:e.caption||e.title};
   const done=listsDone();
-  $('#tstat').textContent=`#${listIdx+1} of ${library.length}: "${e.title.slice(0,42)}${e.title.length>42?'...':''}" (${e.items.length} slides)${done.includes(listIdx)?' · done':''} · ${done.length}/${library.length} done`;
+  $('#tstat').textContent=`#${listIdx+1} of ${library.length}: "${e.title.slice(0,42)}${e.title.length>42?'...':''}" (${e.items.length} slides)${done.includes(listIdx)?' · done':''} · ${done.length}/${library.length} done${done.length>=library.length?' · ALL DONE, recycling':''}`;
   $('#listnum').value=listIdx+1;
   $('#translist').value='';$('#cleartrans').style.display='none';
   syncHook();
@@ -624,7 +624,7 @@ function batchUI(){
   if(!batchN){$('#batchbox').style.display='none';return;}
   $('#batchbox').style.display='';
   const hs=APP()==='trail'?TRAIL_HASH:L.hash;
-  $('#bqlist').textContent=batchQ.map((q,i)=>`${i+1}. #${q+1} ${library[q].title.slice(0,34)}${library[q].title.length>34?'...':''}`).join('\n');
+  $('#bqlist').textContent=(listsDone().length>=library.length?'ALL LISTS DONE, this batch recycles old ones\n':'')+batchQ.map((q,i)=>`${i+1}. #${q+1} ${library[q].title.slice(0,34)}${library[q].title.length>34?'...':''}`).join('\n');
   $('#bcaps').innerHTML=batchQ.map((q,i)=>{
     const cap=(library[q].caption||library[q].title)+'\n\n'+hs[(state.hash+i)%hs.length];
     return `<div class="bcap"><h3>Post ${i+1} caption</h3><pre id="bcap${i}">${cap.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</pre><button class="ghost bcopy" data-i="${i}">Copy caption ${i+1}</button></div>`;
