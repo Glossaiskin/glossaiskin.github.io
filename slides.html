@@ -594,6 +594,7 @@ function caption(){
 }
 async function files(){return Promise.all(canvases.map((c,i)=>new Promise(r=>c.toBlob(b=>r(new File([b],`gloss-${i+1}.jpg`,{type:'image/jpeg'})),'image/jpeg',.92))));}
 $('#save').onclick=async()=>{
+  try{await navigator.clipboard.writeText($('#cap').textContent);$('#save').textContent='Caption copied, saving...';setTimeout(()=>$('#save').textContent='Save all slides to Photos',2500);}catch(e){}
   $('#st').textContent='preparing...';
   if(state.mode==='tips'){const d=listsDone();if(library.length&&!d.includes(listIdx)){d.push(listIdx);store.set(kDone(),JSON.stringify(d));loadList(listIdx);}}
   else{const nm=$('#name').value.trim();const lg=$('#lang').value;
