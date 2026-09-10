@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How Much Sunscreen Should I Use on My Face? Calculator (Grams, Teaspoons, Finger Rule)</title>
+  <meta name="description" content="Work out exactly how much sunscreen your face and body need to actually get the SPF on the label. Answers in grams, teaspoons and finger lengths, plus how many days a bottle lasts." />
+  <link rel="canonical" href="https://glossaiskin.github.io/tools/sunscreen-amount-calculator/" />
+  <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/gloss.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="How much sunscreen should I use? Calculator" />
+  <meta property="og:description" content="Work out exactly how much sunscreen your face and body need to actually get the SPF on the label. Answers in grams, teaspoons and finger lengths, plus how many days a bottle lasts." />
+  <meta property="og:url" content="https://glossaiskin.github.io/tools/sunscreen-amount-calculator/" />
+  <meta property="og:image" content="https://glossaiskin.github.io/assets/logo.svg" />
+  <meta name="apple-itunes-app" content="app-id=6792349354" />
+  <script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How much sunscreen should I put on my face?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "About 1 gram, which is two finger lengths of cream or a quarter of a teaspoon. Add another finger length for the neck and another for the chest."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How many fingers of sunscreen for face and neck?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Three to four finger lengths total: two for the face, one to two for the neck and upper chest."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long should a 50 ml bottle of face sunscreen last?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Six to eight weeks if you apply the tested amount to your face and neck once a day. Longer than that means you are under-applying."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is SPF 50 much better than SPF 30?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "At full application, SPF 30 blocks about 97% of UVB and SPF 50 about 98%. The bigger difference in real life is that most people under-apply, and a higher SPF gives you more margin for that."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How often should I reapply sunscreen?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Every two hours in direct sun, and immediately after swimming, heavy sweating or drying off with a towel."
+   }
+  }
+ ]
+}</script>
+  <script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "How much sunscreen should I use? Calculator",
+ "url": "https://glossaiskin.github.io/tools/sunscreen-amount-calculator/",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any",
+ "browserRequirements": "Requires JavaScript",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Gloss",
+  "url": "https://glossaiskin.github.io"
+ }
+}</script>
+</head>
+<body data-root="../../">
+<main class="wrap">
+  <div class="breadcrumb"><a href="../../">Gloss</a> › <a href="../">Free tools</a> › How much sunscreen for my face</div>
+  <h1>How much sunscreen should I use? Calculator</h1>
+  <p class="intro">Almost everyone applies a quarter to a half of the amount sunscreen is tested at, which turns SPF 50 into roughly SPF 10 to 20. Pick what you are covering and get the real amount, plus how long your bottle should last if you are using enough.</p>
+
+  <div class="tool" id="tool">
+
+    <div class="q"><span class="qlabel">What are you covering?</span>
+      <div class="chips" id="areas">
+        <label class="chip"><input type="checkbox" value="face" checked> Face</label>
+        <label class="chip"><input type="checkbox" value="neck" checked> Neck and chest</label>
+        <label class="chip"><input type="checkbox" value="ears"> Ears</label>
+        <label class="chip"><input type="checkbox" value="arms"> Both arms</label>
+        <label class="chip"><input type="checkbox" value="hands"> Hands</label>
+        <label class="chip"><input type="checkbox" value="legs"> Both legs</label>
+        <label class="chip"><input type="checkbox" value="torso"> Torso (front and back)</label>
+        <label class="chip"><input type="checkbox" value="scalp"> Scalp or shaved head</label>
+      </div></div>
+    <div class="q"><label class="qlabel" for="size">Body size</label>
+      <select id="size"><option value="0.85">Smaller than average</option><option value="1" selected>Average</option><option value="1.15">Larger than average</option></select></div>
+    <div class="q"><label class="qlabel" for="bottle">Your bottle size in ml (optional)</label>
+      <input type="number" id="bottle" min="5" max="500" placeholder="e.g. 50"></div>
+    <div class="q"><label class="qlabel" for="apps">Applications per day</label>
+      <select id="apps"><option value="1" selected>1 (indoors most of the day)</option><option value="2">2 (out for a few hours)</option><option value="3">3 or more (beach, sport, all day outside)</option></select></div>
+    <div class="actions"><button class="btn" id="go">Calculate</button></div>
+    <div class="result" id="res"></div>
+
+  </div>
+
+  <p class="small">This tool runs entirely in your browser. Nothing you enter is sent anywhere.</p>
+
+  <div class="cta">
+    <div>
+      <h2>See what daily SPF does to your skin over time</h2>
+      <p>Sun exposure shows up as uneven tone and lost radiance long before wrinkles. Gloss tracks clarity and radiance from a daily selfie, so you can watch them improve once the SPF habit sticks.</p>
+      <p class="fine">Cosmetic tracking only, not medical advice. Your scan photo is analyzed and discarded, never stored.</p>
+    </div>
+    <a class="btn" href="https://apps.apple.com/us/app/gloss-ai-skin-analysis/id6792349354" rel="noopener">Download Gloss</a>
+  </div>
+
+  <h2>Why the amount matters more than the SPF number</h2>
+  <p>SPF is measured in a lab at 2 milligrams of product per square centimetre of skin. Studies of real people find most apply between 0.5 and 1 mg per cm². Protection does not scale in a straight line, so applying half the amount gives you far less than half the SPF. SPF 50 at half thickness behaves closer to SPF 7 to 15. Buying a higher number does not fix this. Applying enough does.</p>
+
+  <h2>The quick references</h2>
+  <ul>
+    <li><strong>Face:</strong> two finger lengths, or a quarter teaspoon, or about 1 g.</li>
+    <li><strong>Face, neck and chest:</strong> about half a teaspoon, roughly 2 g.</li>
+    <li><strong>Whole body in swimwear:</strong> a full shot glass, about 30 g, per application.</li>
+    <li><strong>A 50 ml face sunscreen:</strong> should run out in roughly 6 to 8 weeks of daily use on face and neck. If yours lasts six months, you are using a quarter of the tested amount.</li>
+  </ul>
+
+  <h2>Two layers is a legitimate trick</h2>
+  <p>Two thin layers a minute apart are easier to spread evenly than one thick one, and end up at the same total. Missed patches (around the hairline, the sides of the nose, the ears) are the other big loss, and a second pass catches them.</p>
+
+  <h2>Reapplication</h2>
+  <p>Every two hours in direct sun, and after swimming, sweating or towelling off. On an indoor day near windows one good morning application holds up reasonably well, and a top-up at lunch is a good habit. Powder and spray top-ups over makeup are better than nothing but rarely reach the tested thickness.</p>
+
+
+  <h2>Common questions</h2>
+  <div class="faq"><details><summary>How much sunscreen should I put on my face?</summary><p>About 1 gram, which is two finger lengths of cream or a quarter of a teaspoon. Add another finger length for the neck and another for the chest.</p></details><details><summary>How many fingers of sunscreen for face and neck?</summary><p>Three to four finger lengths total: two for the face, one to two for the neck and upper chest.</p></details><details><summary>How long should a 50 ml bottle of face sunscreen last?</summary><p>Six to eight weeks if you apply the tested amount to your face and neck once a day. Longer than that means you are under-applying.</p></details><details><summary>Is SPF 50 much better than SPF 30?</summary><p>At full application, SPF 30 blocks about 97% of UVB and SPF 50 about 98%. The bigger difference in real life is that most people under-apply, and a higher SPF gives you more margin for that.</p></details><details><summary>How often should I reapply sunscreen?</summary><p>Every two hours in direct sun, and immediately after swimming, heavy sweating or drying off with a towel.</p></details></div>
+
+  <p class="notice">Gloss and the tools on this site are for cosmetic and general information only. They do not diagnose or treat any condition. If something on your skin is new, changing, painful or worrying, see a dermatologist or doctor.</p>
+
+  <h2>More free skin tools</h2><div class="grid"><a class="card" href="../skin-type-quiz/"><span class="kind">Quiz</span><h3>What is my skin type?</h3><p>Eight questions. Oily, dry, combination, normal or sensitive, with a routine to match.</p></a><a class="card" href="../rate-my-skin/"><span class="kind">Scorecard</span><h3>Rate my skin</h3><p>Score your own hydration, clarity, texture and radiance the way Gloss does.</p></a><a class="card" href="../skincare-routine-order/"><span class="kind">Builder</span><h3>Skincare routine order</h3><p>Tick the products you own and get the correct AM and PM order.</p></a><a class="card" href="../dry-vs-dehydrated-skin/"><span class="kind">Quiz</span><h3>Dry or dehydrated?</h3><p>They feel similar and need opposite fixes. Find out which one you have.</p></a></div>
+</main>
+<script src="../../assets/site.js"></script>
+<script>
+
+(function(){
+  // Approximate surface area in cm² for an average adult, then 2 mg/cm² (the test standard).
+  var AREA = { face:550, neck:600, ears:60, arms:2400, hands:450, legs:5400, torso:5500, scalp:600 };
+  var NAMES = { face:'face', neck:'neck and chest', ears:'ears', arms:'arms', hands:'hands', legs:'legs', torso:'torso', scalp:'scalp' };
+  document.getElementById('go').addEventListener('click', function(){
+    var sel = Array.prototype.map.call(document.querySelectorAll('#areas input:checked'), function(i){return i.value});
+    if(!sel.length) return;
+    var k = +document.getElementById('size').value;
+    var cm2 = sel.reduce(function(a,x){return a+AREA[x]},0)*k;
+    var grams = cm2*2/1000;               // 2 mg per cm²
+    var ml = grams;                       // most sunscreens are roughly 1 g per ml
+    var tsp = ml/5;
+    var fingers = ml/0.5;                 // one finger length of cream is about 0.5 ml
+    var out = '<span class="tag">Per application</span><div class="big">'+grams.toFixed(1)+' g</div>';
+    out += '<p>That is about <strong>'+ (tsp<1 ? tsp.toFixed(2) : tsp.toFixed(1))+' teaspoons' +'</strong>, or <strong>'+Math.round(fingers)+' finger lengths</strong> (a line of cream from the tip to the base of your index finger), for your '+sel.map(function(s){return NAMES[s]}).join(', ')+'.</p>';
+    if (sel.indexOf('face')>-1) out += '<p><strong>Face alone:</strong> about '+(AREA.face*k*2/1000).toFixed(1)+' g, which is the famous two finger lengths or a quarter teaspoon. If that feels like too much for one layer, apply half, wait a minute, then apply the other half.</p>';
+    var bottle = +document.getElementById('bottle').value, apps = +document.getElementById('apps').value;
+    if (bottle>0){
+      var days = bottle/(ml*apps);
+      out += '<p><strong>Your '+bottle+' ml bottle</strong> should last about <strong>'+ (days<1 ? 'less than a day' : Math.floor(days)+' days') +'</strong> at '+apps+' application'+(apps>1?'s':'')+' a day. If it lasts a lot longer than that, you are under-applying.</p>';
+    }
+    out += '<p class="small">Based on the 2 mg per cm² used in SPF testing and typical adult surface areas. Reapply every two hours in direct sun and after swimming or sweating.</p>';
+    out += '<p><a class="btn" href="https://apps.apple.com/us/app/gloss-ai-skin-analysis/id6792349354" rel="noopener">Track my skin\'s radiance in Gloss</a></p>';
+    var r=document.getElementById('res'); r.innerHTML=out; r.classList.add('show'); r.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+})();
+
+</script>
+</body>
+</html>
