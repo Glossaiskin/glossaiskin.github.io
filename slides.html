@@ -59,6 +59,11 @@ body{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
 .row button{min-width:120px;white-space:nowrap}
 #save{min-height:54px;margin-bottom:env(safe-area-inset-bottom)}
 .modalbar,#modal .bar{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+
+#batchseg button{min-width:0}
+.bcap{margin-top:12px}
+.bcap h3{font-size:13px;color:#8b7f83;margin:0 0 6px;text-transform:uppercase;letter-spacing:.04em}
+.bcap pre{white-space:pre-wrap;background:#fff;border:1.5px solid #eee1e5;border-radius:14px;padding:12px;font-family:inherit;font-size:14px;margin:0 0 6px;max-height:150px;overflow:auto}
 </style>
 </head>
 <body>
@@ -95,6 +100,17 @@ body{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
   <div class="row"><button id="nextlist">Next list</button><button class="ghost" id="marklist">Mark done</button></div>
   <div class="row" style="margin-top:8px"><input type="number" id="listnum" placeholder="#" min="1"><button class="ghost" id="loadlist">Load #</button></div>
   <div class="flex" style="margin-top:6px"><span class="tip" id="tstat"></span></div>
+  <div style="margin-top:14px"><label>Batch mode: make several posts at once</label>
+  <div class="seg" id="batchseg">
+    <button data-n="0" class="on">Off</button><button data-n="3">3</button><button data-n="4">4</button><button data-n="5">5</button>
+  </div>
+  <div id="batchbox" style="display:none;margin-top:10px">
+    <div class="flex"><span class="tip" id="bqlist"></span></div>
+    <div class="row" style="margin-top:8px"><button class="ghost" id="breroll">Reroll queue</button></div>
+    <div class="tip" style="margin-top:8px">Pick one cover photo per post above, in order. Download saves every slide of every post, marks them all done, and the captions are below.</div>
+    <button id="bsave" style="margin-top:10px">Download all posts to Photos</button>
+    <div id="bcaps"></div>
+  </div></div>
   <div class="row" style="margin-top:8px"><button class="ghost" id="copylist">Copy this list's text</button><button class="ghost" id="cleartrans" style="display:none">Back to English</button></div>
   <label>Paste your translation here (optional, slides will use it)</label>
   <textarea id="translist" style="min-height:70px" placeholder="paste the translated list, same format"></textarea>
@@ -432,6 +448,7 @@ function importLists(){
   listIdx=0;store.set(kIdx(),'0');
   $('#tipspaste').value='';
   loadList(0);
+  if(batchN)pickBatch();
 }
 function listText(e){return e.title+'\n\n'+e.items.map((t,k)=>(k+1)+': '+t).join('\n\n')+'\n\nCaption: '+(e.caption||'');}
 function applyTranslation(){
@@ -592,6 +609,64 @@ function caption(){
   if(state.mode==='tips'){const hs=APP()==='trail'?TRAIL_HASH:L.hash;$('#cap').textContent=(tips.caption||tips.title)+'\n\n'+hs[state.hash%hs.length];}
   else $('#cap').textContent=fill(L.caps[state.cap],{n,s:gloss(),low:lowest().name.toLowerCase()})+'\n\n'+L.hash[state.hash];
 }
+let batchN=0,batchQ=[];
+function pickBatch(){
+  library=libFor();const done=listsDone();
+  const pool=library.map((_,k)=>k).filter(k=>!done.includes(k));
+  const src=pool.length>=batchN?pool:library.map((_,k)=>k);
+  batchQ=[];const bag=[...src];
+  while(batchQ.length<Math.min(batchN,bag.length)){batchQ.push(bag.splice(Math.floor(Math.random()*bag.length),1)[0]);}
+  batchUI();
+}
+function entryTips(e){return {title:e.title,items:e.items.slice(0,12),caption:e.caption||e.title};}
+function batchUI(){
+  if(!batchN){$('#batchbox').style.display='none';return;}
+  $('#batchbox').style.display='';
+  const hs=APP()==='trail'?TRAIL_HASH:L.hash;
+  $('#bqlist').textContent=batchQ.map((q,i)=>`${i+1}. #${q+1} ${library[q].title.slice(0,34)}${library[q].title.length>34?'...':''}`).join('\n');
+  $('#bcaps').innerHTML=batchQ.map((q,i)=>{
+    const cap=(library[q].caption||library[q].title)+'\n\n'+hs[(state.hash+i)%hs.length];
+    return `<div class="bcap"><h3>Post ${i+1} caption</h3><pre id="bcap${i}">${cap.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</pre><button class="ghost bcopy" data-i="${i}">Copy caption ${i+1}</button></div>`;
+  }).join('');
+  document.querySelectorAll('.bcopy').forEach(b=>b.onclick=async()=>{await navigator.clipboard.writeText($('#bcap'+b.dataset.i).textContent);b.textContent='Copied';setTimeout(()=>b.textContent='Copy caption '+(+b.dataset.i+1),1400);});
+}
+document.querySelectorAll('#batchseg button').forEach(b=>b.onclick=()=>{
+  batchN=+b.dataset.n;document.querySelectorAll('#batchseg button').forEach(x=>x.classList.toggle('on',x===b));
+  if(batchN)pickBatch();else batchUI();
+});
+$('#breroll') && ($('#breroll').onclick=()=>pickBatch());
+async function batchFiles(){
+  const keepTips=tips,keepPhotos=photos;
+  const out=[];
+  for(let k=0;k<batchQ.length;k++){
+    tips=entryTips(library[batchQ[k]]);
+    if(keepPhotos.length)photos=[keepPhotos[Math.min(k,keepPhotos.length-1)]];
+    const n=tipsSlideCount();
+    for(let i=0;i<n;i++){
+      const c=drawTipsSlide(i);
+      const f=await new Promise(r=>c.toBlob(b=>r(new File([b],`post${k+1}-${String(i+1).padStart(2,'0')}.jpg`,{type:'image/jpeg'})),'image/jpeg',.92));
+      out.push(f);
+    }
+  }
+  tips=keepTips;photos=keepPhotos;render();
+  return out;
+}
+$('#bsave') && ($('#bsave').onclick=async()=>{
+  if(!batchQ.length)return;
+  $('#bsave').textContent='building '+batchQ.length+' posts...';
+  try{await navigator.clipboard.writeText($('#bcap0')?$('#bcap0').textContent:'');}catch(e){}
+  const fs=await batchFiles();
+  let ok=false;
+  if(navigator.canShare&&navigator.canShare({files:fs})){
+    try{await navigator.share({files:fs});ok=true;}catch(e){}
+  }else{fs.forEach(f=>{const a=document.createElement('a');a.href=URL.createObjectURL(f);a.download=f.name;a.click();});ok=true;}
+  if(ok){
+    const d=listsDone();batchQ.forEach(q=>{if(!d.includes(q))d.push(q);});store.set(kDone(),JSON.stringify(d));
+    $('#bsave').textContent='saved, all marked done. caption 1 copied';
+    loadList(listIdx);pickBatch();
+  }else $('#bsave').textContent='cancelled';
+  setTimeout(()=>$('#bsave').textContent='Download all posts to Photos',3000);
+});
 async function files(){return Promise.all(canvases.map((c,i)=>new Promise(r=>c.toBlob(b=>r(new File([b],`gloss-${i+1}.jpg`,{type:'image/jpeg'})),'image/jpeg',.92))));}
 $('#save').onclick=async()=>{
   try{await navigator.clipboard.writeText($('#cap').textContent);$('#save').textContent='Caption copied, saving...';setTimeout(()=>$('#save').textContent='Save all slides to Photos',2500);}catch(e){}
@@ -714,12 +789,12 @@ function syncSeg(){document.querySelectorAll('#appseg button').forEach(b=>b.clas
 function setApp(v){state.app=v;$('#app').value=v;store.set('gloss-app',v);syncSeg();
   listIdx=+(store.get(kIdx())||0);
   $('#translist').value='';$('#cleartrans').style.display='none';
-  applyApp();loadShot();loadList(listIdx);}
+  applyApp();loadShot();loadList(listIdx);if(batchN)pickBatch();}
 document.querySelectorAll('#appseg button').forEach(b=>b.onclick=()=>setApp(b.dataset.app));
 $('#app').onchange=e=>{setApp(e.target.value);return;state.app=e.target.value;store.set('gloss-app',state.app);
   listIdx=+(store.get(kIdx())||0);
   $('#translist').value='';$('#cleartrans').style.display='none';
-  applyApp();loadShot();loadList(listIdx);};
+  applyApp();loadShot();loadList(listIdx);if(batchN)pickBatch();};
 $('#trailname').addEventListener('input',()=>{store.set('trail-name',$('#trailname').value);render();});
 $('#trailtag').addEventListener('input',()=>{store.set('trail-tag',$('#trailtag').value);render();});
 $('#ctashot').onchange=e=>{const f=e.target.files[0];if(!f)return;
