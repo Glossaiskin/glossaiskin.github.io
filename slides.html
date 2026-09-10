@@ -620,6 +620,7 @@ function pickBatch(){
 }
 function entryTips(e){return {title:e.title,items:e.items.slice(0,12),caption:e.caption||e.title};}
 function batchUI(){
+  library=libFor();
   if(!batchN){$('#batchbox').style.display='none';return;}
   $('#batchbox').style.display='';
   const hs=APP()==='trail'?TRAIL_HASH:L.hash;
@@ -773,7 +774,7 @@ $('#rehook').onclick=()=>{state.hook=fresh(lc()+'hook',L.hooks.length);syncHook(
 $('#copyhook').onclick=async()=>{await navigator.clipboard.writeText($('#hook').textContent);$('#copyhook').textContent='Copied';setTimeout(()=>$('#copyhook').textContent='Copy hook',1500);};
 $('#cta').onchange=e=>{state.cta=e.target.value;render();};
 $('#layout').onchange=e=>{state.layout=e.target.value;store.set('gloss-layout',state.layout);render();};
-$('#lang').onchange=e=>{setLang(e.target.value);if(state.mode==='tips'){$('#translist').value='';$('#cleartrans').style.display='none';loadList(listIdx);}else reroll();};
+$('#lang').onchange=e=>{setLang(e.target.value);if(state.mode==='tips'){$('#translist').value='';$('#cleartrans').style.display='none';loadList(listIdx);if(batchN)batchUI();}else reroll();};
 function applyApp(){
   const t=APP()==='trail';
   if(t){state.mode='tips';$('#mode').value='tips';}
