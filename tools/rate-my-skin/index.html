@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rate My Skin: Free Skin Score Out of 100 (Hydration, Clarity, Texture, Radiance)</title>
+  <meta name="description" content="Rate your skin in 60 seconds. Answer 12 quick questions and get a skin score out of 100 across hydration, clarity, texture and radiance, plus what to work on first." />
+  <link rel="canonical" href="https://glossaiskin.github.io/tools/rate-my-skin/" />
+  <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/gloss.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rate my skin: get a score out of 100" />
+  <meta property="og:description" content="Rate your skin in 60 seconds. Answer 12 quick questions and get a skin score out of 100 across hydration, clarity, texture and radiance, plus what to work on first." />
+  <meta property="og:url" content="https://glossaiskin.github.io/tools/rate-my-skin/" />
+  <meta property="og:image" content="https://glossaiskin.github.io/assets/logo.svg" />
+  <meta name="apple-itunes-app" content="app-id=6792349354" />
+  <script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Is there an app that rates your skin?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Gloss for iPhone analyzes a selfie and returns a glow score out of 100 plus hydration, clarity, texture and radiance scores, then tracks them over time. This page gives a self-rated version of the same four scores."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is a good skin score?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "On a 0 to 100 scale, 80 and above is strong, 60 to 80 is average with room to improve, and below 60 usually means the basics (hydration, sun protection, gentle cleansing) are missing. The trend matters more than the number."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How accurate is a skin rating from a photo?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It is consistent rather than perfect. Lighting, angle and makeup change the result, which is why photo-based tools ask for daylight, no makeup and the same distance each time. Under those conditions the score tracks real change well enough to tell whether a routine is working over several weeks."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How often should I rate my skin?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Once a week for a self-rating. Daily is fine for a photo-based scan because it takes seconds, but read the weekly average, not single days."
+   }
+  }
+ ]
+}</script>
+  <script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Rate my skin: get a score out of 100",
+ "url": "https://glossaiskin.github.io/tools/rate-my-skin/",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any",
+ "browserRequirements": "Requires JavaScript",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Gloss",
+  "url": "https://glossaiskin.github.io"
+ }
+}</script>
+</head>
+<body data-root="../../">
+<main class="wrap">
+  <div class="breadcrumb"><a href="../../">Gloss</a> › <a href="../">Free tools</a> › Rate my skin</div>
+  <h1>Rate my skin: get a score out of 100</h1>
+  <p class="intro">Twelve honest questions about how your skin looks and feels right now. You get an overall glow score and four sub-scores, the same four the Gloss app measures from a photo. This version is a self-estimate. The app version looks at your actual face.</p>
+
+  <div class="tool" id="tool">
+
+    <form id="f" onsubmit="return false">
+      <p class="help">Slide each one to where your skin is today, not on a good day.</p>
+      <h3>Hydration</h3>
+      <div class="q"><label class="qlabel" for="h1">Tightness after cleansing (0 = very tight, 10 = none)</label><input type="range" id="h1" min="0" max="10" value="5"></div>
+      <div class="q"><label class="qlabel" for="h2">Fine lines that vanish when you press the skin (0 = lots, 10 = none)</label><input type="range" id="h2" min="0" max="10" value="5"></div>
+      <div class="q"><label class="qlabel" for="h3">Plumpness and bounce (0 = flat, 10 = bouncy)</label><input type="range" id="h3" min="0" max="10" value="5"></div>
+      <h3>Clarity</h3>
+      <div class="q"><label class="qlabel" for="c1">Active breakouts right now (0 = many, 10 = none)</label><input type="range" id="c1" min="0" max="10" value="5"></div>
+      <div class="q"><label class="qlabel" for="c2">Dark marks or leftover spots (0 = many, 10 = none)</label><input type="range" id="c2" min="0" max="10" value="5"></div>
+      <div class="q"><label class="qlabel" for="c3">Redness or uneven tone (0 = a lot, 10 = even)</label><input type="range" id="c3" min="0" max="10" value="5"></div>
+      <h3>Texture</h3>
+      <div class="q"><label class="qlabel" for="t1">Smoothness to the touch (0 = rough, 10 = smooth)</label><input type="range" id="t1" min="0" max="10" value="5"></div>
+      <div class="q"><label class="qlabel" for="t2">Visible pores (0 = very visible, 10 = barely)</label><input type="range" id="t2" min="0" max="10" value="5"></div>
+      <div class="q"><label class="qlabel" for="t3">Bumps, flakes or blackheads (0 = many, 10 = none)</label><input type="range" id="t3" min="0" max="10" value="5"></div>
+      <h3>Radiance</h3>
+      <div class="q"><label class="qlabel" for="r1">Glow in daylight without product (0 = dull, 10 = glowing)</label><input type="range" id="r1" min="0" max="10" value="5"></div>
+      <div class="q"><label class="qlabel" for="r2">Dark circles or tired look (0 = strong, 10 = none)</label><input type="range" id="r2" min="0" max="10" value="5"></div>
+      <div class="q"><label class="qlabel" for="r3">Overall brightness compared with 6 months ago (0 = worse, 10 = better)</label><input type="range" id="r3" min="0" max="10" value="5"></div>
+      <div class="actions"><button class="btn" id="go">Rate my skin</button></div>
+    </form>
+    <div class="result" id="res"></div>
+
+  </div>
+
+  <p class="small">This tool runs entirely in your browser. Nothing you enter is sent anywhere.</p>
+
+  <div class="cta">
+    <div>
+      <h2>Want the version that does not rely on your own opinion?</h2>
+      <p>Self-ratings drift. Gloss scores hydration, clarity, texture and radiance from a selfie, so you get the same four numbers without guessing, and a timeline that shows them moving.</p>
+      <p class="fine">Cosmetic tracking only, not medical advice. Your scan photo is analyzed and discarded, never stored.</p>
+    </div>
+    <a class="btn" href="https://apps.apple.com/us/app/gloss-ai-skin-analysis/id6792349354" rel="noopener">Download Gloss</a>
+  </div>
+
+  <h2>What a skin score actually measures</h2>
+  <p>There is no official scale for rating skin. Any score you see, on this page, in an app, or at a beauty counter, is a way of turning a handful of visible traits into a number so you can compare today with last month. The four traits that cover most of what people mean by "good skin" are:</p>
+  <ul>
+    <li><strong>Hydration:</strong> water content in the top layers. Shows as plumpness, and its absence shows as tightness and fine crinkling.</li>
+    <li><strong>Clarity:</strong> freedom from blemishes, marks and uneven tone.</li>
+    <li><strong>Texture:</strong> smoothness of the surface. Pores, bumps, flakes and roughness pull it down.</li>
+    <li><strong>Radiance:</strong> how much light the skin reflects evenly. Dullness, dark circles and sallowness pull it down.</li>
+  </ul>
+
+  <h2>How to rate yourself consistently</h2>
+  <p>The score is only useful if it is comparable, so keep the conditions the same. Rate in the morning, before products, in daylight, in the same mirror. Do not rate on the day of a big breakout or the day after a facial. If you want to use this page as a tracker, come back once a week rather than daily, since day-to-day variation is mostly noise.</p>
+
+  <h2>Why a photo-based score is more honest</h2>
+  <p>Self-ratings have a known problem: you compare your skin with your memory of it, and memory is kind. A photo scored the same way each time removes that. The Gloss app asks for a bare-faced selfie in similar light, returns the same four numbers plus a glow score, and stores only the numbers. Your trend line is built from measurements rather than moods.</p>
+
+  <h2>What a "good" score is</h2>
+  <p>Above 80 in a category means it is not something to spend money on. Between 60 and 80 is where one well-chosen product makes a visible difference. Below 60 is where the basics (cleanse gently, moisturize, wear SPF, sleep) matter more than any active. Most people have one category well below the others, and that is the one to fix first.</p>
+
+
+  <h2>Common questions</h2>
+  <div class="faq"><details><summary>Is there an app that rates your skin?</summary><p>Yes. Gloss for iPhone analyzes a selfie and returns a glow score out of 100 plus hydration, clarity, texture and radiance scores, then tracks them over time. This page gives a self-rated version of the same four scores.</p></details><details><summary>What is a good skin score?</summary><p>On a 0 to 100 scale, 80 and above is strong, 60 to 80 is average with room to improve, and below 60 usually means the basics (hydration, sun protection, gentle cleansing) are missing. The trend matters more than the number.</p></details><details><summary>How accurate is a skin rating from a photo?</summary><p>It is consistent rather than perfect. Lighting, angle and makeup change the result, which is why photo-based tools ask for daylight, no makeup and the same distance each time. Under those conditions the score tracks real change well enough to tell whether a routine is working over several weeks.</p></details><details><summary>How often should I rate my skin?</summary><p>Once a week for a self-rating. Daily is fine for a photo-based scan because it takes seconds, but read the weekly average, not single days.</p></details></div>
+
+  <p class="notice">Gloss and the tools on this site are for cosmetic and general information only. They do not diagnose or treat any condition. If something on your skin is new, changing, painful or worrying, see a dermatologist or doctor.</p>
+
+  <h2>More free skin tools</h2><div class="grid"><a class="card" href="../skin-type-quiz/"><span class="kind">Quiz</span><h3>What is my skin type?</h3><p>Eight questions. Oily, dry, combination, normal or sensitive, with a routine to match.</p></a><a class="card" href="../skincare-routine-order/"><span class="kind">Builder</span><h3>Skincare routine order</h3><p>Tick the products you own and get the correct AM and PM order.</p></a><a class="card" href="../dry-vs-dehydrated-skin/"><span class="kind">Quiz</span><h3>Dry or dehydrated?</h3><p>They feel similar and need opposite fixes. Find out which one you have.</p></a><a class="card" href="../sunscreen-amount-calculator/"><span class="kind">Calculator</span><h3>How much sunscreen for my face</h3><p>The actual amount in grams, teaspoons and finger lengths.</p></a></div>
+</main>
+<script src="../../assets/site.js"></script>
+<script>
+
+(function(){
+  function v(id){ return +document.getElementById(id).value; }
+  function score(ids){ var s = ids.reduce(function(a,id){return a+v(id)},0); return Math.round(s/(ids.length*10)*100); }
+  var ADVICE = {
+    Hydration:'Apply a humectant serum (hyaluronic acid or glycerin) to damp skin and seal it with moisturizer within a minute. Drink water, but know that topical hydration moves this number faster.',
+    Clarity:'Add one active only: salicylic acid 2% for congestion, or azelaic acid 10% for redness and marks. Use it 3 nights a week for 8 weeks before judging it.',
+    Texture:'Gentle chemical exfoliation (lactic or mandelic acid) once or twice a week, and a retinoid on other nights if your skin tolerates it. Stop scrubbing.',
+    Radiance:'Daily SPF, a vitamin C serum in the morning, and sleep. Radiance responds to circulation and even tone more than to any single product.'
+  };
+  document.getElementById('go').addEventListener('click', function(){
+    var m = { Hydration: score(['h1','h2','h3']), Clarity: score(['c1','c2','c3']), Texture: score(['t1','t2','t3']), Radiance: score(['r1','r2','r3']) };
+    var glow = Math.round((m.Hydration+m.Clarity+m.Texture+m.Radiance)/4);
+    var lowest = Object.keys(m).sort(function(a,b){return m[a]-m[b]})[0];
+    var label = glow>=85?'Strong':glow>=70?'Good':glow>=55?'Average':'Needs attention';
+    var out = '<span class="tag">Self-rated glow score</span><div class="big">'+glow+'<span style="font-size:1rem;color:var(--muted)"> / 100 · '+label+'</span></div>';
+    Object.keys(m).forEach(function(k){ out += '<div class="metric"><span>'+k+'</span><div class="bar"><span style="width:'+m[k]+'%"></span></div><b>'+m[k]+'</b></div>'; });
+    out += '<h4>Work on '+lowest.toLowerCase()+' first</h4><p>'+ADVICE[lowest]+'</p>';
+    out += '<p class="small">Remember this number is your own read of your skin. People consistently over- or under-rate themselves by 10 to 20 points, in the same direction every time. It is fine for tracking your own trend if you answer the same way each time.</p>';
+    out += '<p><a class="btn" href="https://apps.apple.com/us/app/gloss-ai-skin-analysis/id6792349354" rel="noopener">Get my real glow score in Gloss</a></p>';
+    var r = document.getElementById('res'); r.innerHTML = out; r.classList.add('show'); r.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+})();
+
+</script>
+</body>
+</html>

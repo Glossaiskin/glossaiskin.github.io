@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://glossaiskin.github.io/sitemap.xml
