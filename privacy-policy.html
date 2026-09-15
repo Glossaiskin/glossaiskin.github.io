@@ -20,7 +20,7 @@
 </head>
 <body>
   <h1>Gloss — Privacy Policy</h1>
-  <p><em>Effective date: July 20, 2026 · Last updated: July 20, 2026</em></p>
+  <p><em>Effective date: July 20, 2026 · Last updated: September 14, 2026</em></p>
 
   <p>This Privacy Policy describes how Gloss ("<strong>Gloss</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") collects, uses, discloses, and protects information in connection with the Gloss mobile application (the "<strong>App</strong>") and any related services (together, the "<strong>Service</strong>"). By using the Service, you agree to the practices described in this Policy. If you do not agree, please do not use the Service. Your use of the Service is also governed by our <a href="./terms.html">Terms of Use</a>.</p>
 
@@ -86,12 +86,29 @@
     <li>Only the resulting <em>numbers and short text</em> (scores and observations) are stored in our database, associated with your account, so your history can survive a reinstall or a new phone.</li>
   </ol>
 
-  <h3 id="facedata">2a. Face data</h3>
+  <h3 id="facedata">2a. Face data: collection, use, sharing, retention, deletion, and consent</h3>
+  <p><em>This section is our complete statement of how the Service handles face data. It is provided in accordance with Apple's App Store Review Guideline 5.1.1 and Sections 3.3.3(C) and 3.3.3(K) of the Apple Developer Program License Agreement, and it applies in addition to everything else in this Policy.</em></p>
+
   <p><strong>What we collect.</strong> The only face data the Service collects is the ordinary photograph (a standard JPEG image) that you choose to capture or select for a skin scan, and which may show your face. <strong>We do not create, derive, generate, or store a faceprint, face template, face geometry, face signature, face embedding, or any other biometric identifier.</strong> The Service performs no facial recognition, no facial identification, no face matching, no face tracking, no emotion or demographic inference, and no age estimation. It does not use the TrueDepth camera, ARKit face tracking, Vision face-landmark APIs, or any comparable face-detection framework. The photograph is never used to identify you, to distinguish you from any other person, or to link you to any other record.</p>
-  <p><strong>How it is used.</strong> The photograph is used for one purpose only: to generate a cosmetic appearance score (hydration, clarity, texture, radiance), two short cosmetic observations, and a skincare tip. It is not used for advertising, profiling, marketing, research, product development, or model training, and it is never sold or rented.</p>
-  <p><strong>How it is shared.</strong> The photograph is transmitted over TLS to our processing server and passed to a single third-party AI provider, <strong>Anthropic, PBC</strong> (United States), which analyzes it and returns the scores. Anthropic is the only third party that receives it. We share it with no one else, and we do not sell or disclose it to data brokers, advertisers, or any other party except where required by law.</p>
-  <p><strong>Where it is stored, and for how long.</strong> The photograph is <strong>not stored</strong>. It exists only in memory for the duration of a single analysis request — typically a few seconds — and is discarded when that request completes. It is never written to our database, our object storage, or our logs. Under Anthropic's commercial API terms, API inputs and outputs are not retained for training and are not used to train Anthropic's models. <strong>Our retention period for face data is therefore zero: no photograph is retained beyond the lifetime of the request that carried it.</strong> A reduced-size copy of your own scan may remain on your own device so you can view your personal timeline; that copy never leaves your device and is deleted when you delete the App or use "Delete account &amp; data".</p>
-  <p><strong>Your permission.</strong> Nothing is transmitted until you have given explicit, informed permission in the App. Before your first scan, the App shows a dedicated consent screen naming Anthropic, PBC, itemizing every field that will be sent and every field that will not, and describing retention. You must tap "I agree" for any photo to be transmitted. If you decline, the App remains fully usable and your scores are calculated on your device with nothing sent at all. You may withdraw permission at any time under <em>Settings &rarr; How Gloss works &rarr; "Send my scans to Anthropic's AI"</em>; withdrawing takes effect immediately for all future scans.</p>
+
+  <p><strong>All intended uses.</strong> The photograph is used for one purpose only: to generate a cosmetic appearance score (hydration, clarity, texture, radiance), two short cosmetic observations, and a skincare tip, which are shown to you in the App. This is the sole intended use of face data. It is not used for advertising, profiling, marketing, research, product development, analytics, authentication, or model training, and it is never sold or rented. We will not use face data for any new purpose without first updating this section and asking for your consent again in the App.</p>
+
+  <p><strong>All disclosures and sharing.</strong> The photograph is transmitted over TLS to our processing server (a server function hosted by Supabase, Inc., through which the photograph passes in memory only) and passed to a single third-party AI provider, <strong>Anthropic, PBC</strong> (United States), which analyzes it and returns the scores. <strong>Anthropic is the only third party that receives face data.</strong> We disclose it to no one else: not to our analytics provider, not to our subscription provider, not to advertisers, not to data brokers, and not to any affiliate, except where disclosure is required by law. We do not permit Anthropic to share it onward.</p>
+
+  <p><strong>Third-party protection of face data.</strong> <strong>We confirm that Anthropic, PBC, the only third party with which the App shares face data, provides the same or equal protection of your face data as stated in this Policy.</strong> Anthropic processes the photograph solely on our behalf and on our instructions, under written commercial API terms that prohibit it from using API inputs or outputs to train its models, restrict its processing to returning the analysis to us, and prohibit any other use or disclosure. Anthropic does not retain the photograph after the request completes, does not create any biometric identifier from it, and does not use it to identify you. If we ever engaged any other third party to process face data, we would name it here and require the same or equal protection before any sharing occurred.</p>
+
+  <p><strong>Retention: where it is stored, and for how long.</strong> The photograph is <strong>not stored</strong>. It exists only in memory for the duration of a single analysis request &mdash; typically a few seconds &mdash; and is discarded when that request completes. It is never written to our database, our object storage, or our logs, and it is not retained by Anthropic. <strong>Our retention period for face data is therefore zero: no photograph is retained beyond the lifetime of the request that carried it.</strong> The only copy that persists is a reduced-size copy of your own scan on your own device, inside the App's private storage, so you can view your personal timeline. That copy never leaves your device, is never uploaded to us or to anyone else, and is under your control as described under "Deletion" below.</p>
+
+  <p><strong>Consent, and how to revoke it.</strong> Nothing is transmitted until you have given explicit, informed permission in the App. Before your first scan, the App shows a dedicated consent screen naming Anthropic, PBC, itemizing every field that will be sent and every field that will not, and describing retention. You must tap "I agree" for any photo to be transmitted. If you decline, nothing is sent at all: routines, reminders and your saved history remain fully usable, but new photo scores cannot be produced until you grant permission. <strong>You may revoke your consent at any time under <em>Settings &rarr; How Gloss works &rarr; "Send my scans to Anthropic's AI"</em>;</strong> switching it off takes effect immediately, and no further photograph will be captured for analysis or transmitted to Anthropic until you switch it back on. You can additionally revoke the App's camera access under <em>iOS Settings &rarr; Privacy &amp; Security &rarr; Camera</em>. Revoking consent has no effect on your account, your saved scores, or your ability to use the rest of the App.</p>
+
+  <p><strong>Deletion: how to delete your face data.</strong> Because no photograph is ever retained on our servers or by Anthropic, there is no server-side face data to delete: every photograph is destroyed automatically within seconds of each scan, without any action on your part. The face data that remains is on your own device and under your control, and you can delete it in any of the following ways:</p>
+  <ul>
+    <li><strong>Delete one scan:</strong> in the <em>Progress</em> tab, open the scan and choose <em>Delete</em>. This removes that scan and its photo from your timeline on your device and deletes the scan's score record from our servers.</li>
+    <li><strong>Delete everything:</strong> <em>Settings &rarr; "Delete account &amp; data"</em>. This permanently deletes your account, your scan history and your scores from our servers, and clears all Gloss data stored on your device. Any residual image file in the App's private storage is inaccessible to us and to any other app, and is removed with the App's container.</li>
+    <li><strong>Delete the App:</strong> deleting Gloss from your device removes the App's private container and with it every on-device copy of your scan photos.</li>
+    <li><strong>Ask us:</strong> email <a href="mailto:glossaiskn@gmail.com">glossaiskn@gmail.com</a> with "Privacy request" in the subject line. We will delete your account data and confirm within 30 days, or sooner where applicable law requires.</li>
+  </ul>
+  <p>Deletion is permanent. Deleting your face data or revoking consent does not affect your right to use the non-AI features of the App.</p>
 
   <h2 id="use">3. How we use your information</h2>
   <p>We use the information described above to:</p>
@@ -127,6 +144,7 @@
     <tr><td>Supabase, Inc.</td><td>Authentication, database, and server-function hosting</td><td>Account identifiers, skin profile, scan scores, usage counts; photos pass through our server function during analysis only</td></tr>
     <tr><td>Anthropic, PBC</td><td>AI analysis of scans</td><td>Scan photo and pseudonymous scoring context, for the duration of each analysis request</td></tr>
     <tr><td>RevenueCat, Inc.</td><td>Subscription management</td><td>Anonymized user identifier and subscription status</td></tr>
+    <tr><td>ActivationPal</td><td>Product analytics</td><td>In-app events (for example: onboarding completed, scan started, paywall viewed), app version and device model, keyed to a random per-install identifier that is not your Apple ID, email, advertising identifier or hardware ID; never photos, scores or skin answers</td></tr>
     <tr><td>Apple Inc.</td><td>Payment processing, app distribution</td><td>Your purchase, handled under Apple's own terms and privacy policy</td></tr>
     <tr><td>GitHub, Inc.</td><td>Hosting of this policy page</td><td>Standard web-server logs when you view this page</td></tr>
   </table>
@@ -136,7 +154,7 @@
 
   <h2 id="retention">7. Data retention</h2>
   <ul>
-    <li><strong>Scan photos:</strong> not retained — processed and discarded within the analysis request (see Section 2).</li>
+    <li><strong>Scan photos (face data):</strong> not retained — processed and discarded within the analysis request (see Section 2a for our full face-data retention and deletion policy).</li>
     <li><strong>Scan scores, observations, and skin profile:</strong> retained while your account exists, so your history is available to you.</li>
     <li><strong>Usage/abuse-prevention records:</strong> retained for a limited period consistent with fraud-prevention needs.</li>
     <li><strong>Account data:</strong> retained until you delete your account.</li>
@@ -151,8 +169,8 @@
   <ul>
     <li><strong>Access &amp; portability:</strong> you can view your scan history in the App at any time; you may request a copy of your stored personal data by contacting us.</li>
     <li><strong>Correction:</strong> you can update your skin profile in the App; contact us to correct account information.</li>
-    <li><strong>Deletion:</strong> the App includes full self-service deletion (Settings → "Delete account &amp; data"). You may also request deletion by email.</li>
-    <li><strong>Withdraw consent:</strong> stop taking scans, or delete your account, at any time.</li>
+    <li><strong>Deletion:</strong> the App includes full self-service deletion (Settings → "Delete account &amp; data"), and individual scans can be deleted from the Progress tab. You may also request deletion by email. See Section 2a for how to delete face data specifically.</li>
+    <li><strong>Withdraw consent:</strong> switch off "Send my scans to Anthropic's AI" under Settings → How Gloss works to revoke consent for face-data processing at any time (Section 2a), stop taking scans, or delete your account.</li>
     <li><strong>Notifications:</strong> reminders are optional and controlled in the App and in iOS Settings.</li>
     <li><strong>Objection/restriction (EEA/UK):</strong> you may object to or request restriction of certain processing; contact us.</li>
     <li><strong>Complaints:</strong> EEA/UK users may lodge a complaint with their local supervisory authority; we would appreciate the chance to address your concern first.</li>
